@@ -3,6 +3,13 @@
 This tool automates the TMC detach process along with the attach process to TPK8s. This is a temporary solution that can be used to ease the process of using existing or new TMC created clusters and enabling them in Tanzu PLatform. Long term this will be handled by TMC. 
 
 
+# What it does
+1. handles creating the Tanzu cli contexts(optional)
+2. creates a non TMC based kubeconfig for access after the detach
+3. detaches the cluster from TMC
+4. optionally removed the tanzu standard package repo
+5. attached to TPK8s
+
 # Usage
 
 This tool can be run directly as a python script, however the recomended approach is to use prebuilty container image. Jump to the section that fits your use case. There will be a common set of options between the scenarios. Specifically, the option to use an existing context or an ephemeral one. The difference is that using an existing one allows for mounting in and existing tanzu config, the ephemeral option takes in a token and handles the login and context creation on demand in the container. Another common option is whether or not to remove the tanzu standard package repo(`--remove-tz-std`), by default if this flag is not passed it will keep the repo enabled, this is helpful if you are using packages from this repo like fluentbit.

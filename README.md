@@ -1,4 +1,4 @@
-# TPK8s TMC onboarding
+# TPK8s onboarding
 
 This tool automates the TMC detach process along with the attach process to TPK8s. This is a temporary solution that can be used to ease the process of using existing or new TMC created clusters and enabling them in Tanzu PLatform. Long term this will be handled by TMC. 
 

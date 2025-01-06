@@ -91,7 +91,7 @@ docker run ghcr.io/warroyo/tpk8s-attach -c <full-agent-name> -p aks -m aks  --ap
 Using an existing context
 
 ```bash
-docker run -v -v ~/.config/tanzu/:/root/.config/tanzu/ ghcr.io/warroyo/tpk8s-attach --tkgm c <full-agent-name> -p aks -m aks --api-url <non-pinniped-api-url> --tmc-context <tmc-context-name> --tp-context <tanzu-platform-context-name> --project <tanzu-platform-project>
+docker run -v -v ~/.config/tanzu/:/root/.config/tanzu/ ghcr.io/warroyo/tpk8s-attach --tkgm -c <full-agent-name> -p aks -m aks --api-url <non-pinniped-api-url> --tmc-context <tmc-context-name> --tp-context <tanzu-platform-context-name> --project <tanzu-platform-project>
 ```
 
 ## EKS
@@ -105,5 +105,5 @@ docker run ghcr.io/warroyo/tpk8s-attach -c <full-agent-name> -p eks -m eks  --ap
 Using an existing context
 
 ```bash
-docker run -v -v ~/.config/tanzu/:/root/.config/tanzu/ ghcr.io/warroyo/tpk8s-attach --tkgm c <full-agent-name> -p eks -m eks --api-url <non-pinniped-api-url> --tmc-context <tmc-context-name> --tp-context <tanzu-platform-context-name> --project <tanzu-platform-project>
+docker run -v -v ~/.config/tanzu/:/root/.config/tanzu/ ghcr.io/warroyo/tpk8s-attach --tkgm -c <full-agent-name> -p eks -m eks --api-url <non-pinniped-api-url> --tmc-context <tmc-context-name> --tp-context <tanzu-platform-context-name> --project <tanzu-platform-project>
 ```

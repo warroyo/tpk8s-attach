@@ -52,7 +52,7 @@ options:
 Using a ephemeral context
 
 ```bash
-docker run ghcr.io/warroyo/tpk8s-attach -c <clustername> -p <provisioner> -m <mgmt-cluster> --csp-token <token> --org-id <org-id> --tmc-host <tmc-hostname> --project <tanzu-platform-project>
+docker run ghcr.io/warroyo/tpk8s-attach:1.1.0 -c <clustername> -p <provisioner> -m <mgmt-cluster> --csp-token <token> --org-id <org-id> --tmc-host <tmc-hostname> --project <tanzu-platform-project>
 ```
 
 
@@ -62,7 +62,7 @@ docker run ghcr.io/warroyo/tpk8s-attach -c <clustername> -p <provisioner> -m <mg
 Using a ephemeral context
 
 ```bash
-docker run ghcr.io/warroyo/tpk8s-attach --tkgm -c <clustername> -p <provisioner> -m <mgmt-cluster> --csp-token <token> --org-id <org-id> --tmc-host <tmc-hostname> --project <tanzu-platform-project>
+docker run ghcr.io/warroyo/tpk8s-attach:1.1.0 --tkgm -c <clustername> -p <provisioner> -m <mgmt-cluster> --csp-token <token> --org-id <org-id> --tmc-host <tmc-hostname> --project <tanzu-platform-project>
 ```
 
 
@@ -71,7 +71,7 @@ docker run ghcr.io/warroyo/tpk8s-attach --tkgm -c <clustername> -p <provisioner>
 Using a ephemeral context
 
 ```bash
-docker run ghcr.io/warroyo/tpk8s-attach -c <full-agent-name> -p aks -m aks  --api-url <non-pinniped-api-url> --csp-token <token> --org-id <org-id>> --tmc-host <tmc-hostname> --project  <tanzu-platform-project>
+docker run ghcr.io/warroyo/tpk8s-attach:1.1.0 -c <full-agent-name> -p aks -m aks  --api-url <non-pinniped-api-url> --csp-token <token> --org-id <org-id>> --tmc-host <tmc-hostname> --project  <tanzu-platform-project>
 ```
 
 
@@ -80,5 +80,5 @@ docker run ghcr.io/warroyo/tpk8s-attach -c <full-agent-name> -p aks -m aks  --ap
 Using a ephemeral context
 
 ```bash
-docker run ghcr.io/warroyo/tpk8s-attach -c <full-agent-name> -p eks -m eks  --api-url <non-pinniped-api-url> --csp-token <token> --org-id <org-id>> --tmc-host <tmc-hostname> --project  <tanzu-platform-project>
+docker run ghcr.io/warroyo/tpk8s-attach:1.1.0 -c <full-agent-name> -p eks -m eks  --api-url <non-pinniped-api-url> --csp-token <token> --org-id <org-id>> --tmc-host <tmc-hostname> --project  <tanzu-platform-project>
 ```

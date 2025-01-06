@@ -6,6 +6,7 @@ from kubernetes import client, config, utils
 from kubernetes.client.rest import ApiException
 import yaml
 import base64
+import json
 import time
 import os
 import requests
@@ -14,11 +15,12 @@ requests.packages.urllib3.disable_warnings()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-def tpk8sAttach(cluster,cg,kubeconfig):
+def tpk8sAttach(cluster,cg,kubeconfig,labels):
     attachyml = {'fullName': {'managementClusterName': 'attached',
               'name': f'{cluster}',
               'provisionerName': 'attached'},
- 'meta': {'description': 'Attaching cluster using tanzu cli'},
+ 'meta': {'description': 'Attaching cluster using tanzu cli',
+          'labels': labels },
  'spec': {'clusterGroupName': f'{cg}'}}
     with open('/tmp/attach.yml', 'w') as yaml_file:
         yaml.dump(attachyml, yaml_file, default_flow_style=False)
@@ -255,6 +257,7 @@ def main():
     parser.add_argument("--cg", default="run", help="the tpk8s cluster group")
     parser.add_argument("--api-url", help="the url of the api server(not pinniped backed), this is needed to connect after tmc is detached. This is not need for TKG")
     parser.add_argument("--tmc-host", help="the hostname of the tmc instance, not including the protocol. needed when not providing contexts directly")
+    parser.add_argument("--labels", default={},type=json.loads,help="labels to add when attaching a cluster,input in json format")
     args = parser.parse_args()
 
     if args.csp_token != None and args.org_id != None and args.tmc_host != None and args.project != None:
@@ -293,7 +296,7 @@ def main():
         sys.exit(1)
 
 
-
+    print(args.labels)
     setContext(tmc_context)
     getKubeconfig(args.cluster, args.management_cluster,args.provisioner)
     if cluster_type == "tkgm" or cluster_type == "tkgs":
@@ -312,7 +315,7 @@ def main():
         tzStdKeep(sakubeconfig,cluster_type)
     setContext(tp_context)
     setProject(args.project)
-    tpk8sAttach(cluster_name,args.cg,"/tmp/sakube.yml")
+    tpk8sAttach(cluster_name,args.cg,"/tmp/sakube.yml",args.labels)
 
 
 

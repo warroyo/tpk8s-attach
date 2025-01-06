@@ -43,6 +43,7 @@ options:
   --cg CG               the tpk8s cluster group
   --api-url API_URL     the url of the api server(not pinniped backed), this is needed to connect after tmc is detached. This is not need for TKG
   --tmc-host TMC_HOST   the hostname of the tmc instance, not including the protocol. needed when not providing contexts directly
+  --labels LABELS       labels to add when attaching a cluster,input in json format
   ```
 
 

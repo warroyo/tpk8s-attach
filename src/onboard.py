@@ -48,7 +48,7 @@ def tzStdKeep(kubeconfig,cluster_type):
         if x in pkgr["metadata"]["annotations"]:
             del pkgr["metadata"]["annotations"][x]
     try:
-        logging.info("removing annotatiosn for tmc form the pkgr")
+        logging.info("removing annotations for tmc form the pkgr")
         api.patch_namespaced_custom_object(namespace=namespace,group="packaging.carvel.dev",version="v1alpha1",plural="packagerepositories",name="tanzu-standard",body=pkgr)
     except:
         logging.error(f"failed to get pkgr {e}")
@@ -245,8 +245,6 @@ def main():
     cluster_type = "tkg"
     parser = argparse.ArgumentParser(description="cli app for onboarding clusters from TMC into TPK8s")
     parser.add_argument('-t',"--csp-token", help="the token to be used when creating contexts,only used if tmc-context and tpk8s conmtext are not provided")
-    parser.add_argument("--tmc-context", help="the name of the tmc context to be used, only used if token and org are not provided")
-    parser.add_argument("--tp-context", help="the name of the tp context to be used, only used if token and org are not provided")
     parser.add_argument('-o',"--org-id", help="the org to be used when creating contexts, only used if tmc-context and tp conmtext are not provided")
     parser.add_argument('-c',"--cluster", help="the cluster name, use full agent name")
     parser.add_argument('-m',"--management-cluster", help="the management cluster name")
@@ -259,12 +257,7 @@ def main():
     parser.add_argument("--tmc-host", help="the hostname of the tmc instance, not including the protocol. needed when not providing contexts directly")
     args = parser.parse_args()
 
-    # create the context for the tmc instance if it's not already provided
-    if args.tmc_context != None and args.tp_context != None:
-        tmc_context = args.tmc_context
-        tp_context = args.tp_context
-        logging.info("contexts were specified, using pre-created contexts")
-    elif args.csp_token != None and args.org_id != None and args.tmc_host != None and args.project != None:
+    if args.csp_token != None and args.org_id != None and args.tmc_host != None and args.project != None:
         logging.info("csp token and org provided, creating contexts on demand")
         tmc_context = createContext(args.csp_token,args.org_id,args.tmc_host,"tp-onboarding-tmc","tmc")
         tp_context = createContext(args.csp_token,args.org_id,"https://platform.tanzu.broadcom.com","tp-onboarding-tp","tanzu")
